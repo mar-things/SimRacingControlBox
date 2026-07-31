@@ -1,0 +1,21 @@
+# Arduino build artifacts
+build/
+*.hex
+*.elf
+*.bin
+*.eep
+*.map
+*.lst
+*.o
+*.d
+
+# Arduino local configuration/cache
+.arduino/
+.vscode/arduino.json
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

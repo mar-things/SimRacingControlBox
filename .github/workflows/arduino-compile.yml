@@ -1,0 +1,28 @@
+name: Arduino compile
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install AVR core
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+
+      - name: Install Joystick library
+        run: arduino-cli lib install --git-url https://github.com/MHeironimus/ArduinoJoystickLibrary.git
+
+      - name: Compile sketch
+        run: arduino-cli compile --fqbn arduino:avr:micro .
